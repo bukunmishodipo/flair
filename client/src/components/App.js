@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
 
@@ -12,6 +12,7 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import NavBar from "./modules/NavBar.js";
 
 /**
  * Define the "App" component
@@ -47,18 +48,16 @@ const App = () => {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        }
-      />
+    <>
+      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+      <Routes>
+        <Route path="/" element={<Home path="/" />} />
 
-      <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 
