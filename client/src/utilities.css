@@ -24,6 +24,11 @@
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
   --white: #fff;
+  --green: #84c318;
+  --dark--purple: #291528;
+  --peach: #fe654f;
+  --bright-purple: #5762d5;
+  --platinum: #d8d5db;
 
   --xs: 4px;
   --s: 8px;
@@ -63,12 +68,24 @@ form {
   display: inline-block;
 }
 
+.u-Block {
+  display: block;
+}
+
 .u-bold {
   font-weight: 600;
 }
 
 .u-textCenter {
   text-align: center;
+}
+
+.u-textLeft {
+  text-align: left;
+}
+
+.u-textRight {
+  text-align: right;
 }
 
 .u-relative {

@@ -8,6 +8,7 @@ import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
 
 import "../utilities.css";
+import "./App.css";
 
 import { socket } from "../client-socket.js";
 
@@ -40,23 +41,30 @@ const App = () => {
       setUserId(user._id);
       post("/api/initsocket", { socketid: socket.id });
     });
+    navigate("/profile");
   };
 
   const handleLogout = () => {
     setUserId(undefined);
     post("/api/logout");
+    navigate("/");
   };
 
   return (
     <>
-      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-      <Routes>
-        <Route path="/" element={<Home path="/" />} />
+      <NavBar userId={userId} handleLogin={handleLogin} handleLogout={handleLogout} />
+      <div className="App-container">
+        <Routes>
+          <Route
+            path="/"
+            element={<Home userId={userId} handleLogin={handleLogin} handleLogout={handleLogout} />}
+          />
 
-        <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </>
   );
 };

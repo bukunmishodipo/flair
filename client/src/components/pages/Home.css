@@ -1,1 +1,16 @@
 /* Fill me in :) */
+
+.Home-loggedIncontainer {
+  background-color: var(--platinum);
+}
+
+.Home-loggedOutcontainer {
+  background-color: var(--dark--purple);
+}
+
+.Home-messageCenter {
+  margin: auto;
+  width: 50%;
+  /* border: 3px solid green;
+  padding: 10px; */
+}

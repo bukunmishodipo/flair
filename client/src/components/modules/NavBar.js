@@ -10,16 +10,16 @@ const GOOGLE_CLIENT_ID = "846759232774-gvf4r9b6gq5mqpqc2jra692nak4fuurj.apps.goo
  * The navigation bar at the top of all pages. Takes no props.
  */
 const NavBar = ({ userId, handleLogin, handleLogout }) => {
-  return (
-    <nav className="NavBar-container">
-      <div className="NavBar-title u-inlineBlock">Flair</div>
+  return userId ? (
+    <nav className="NavBar-container NavBar-loggedIn">
+      <div className="NavBar-title">Flair</div>
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-        {userId ? (
-          <div className="NavBar-linkContainer u-inlineBlock">
-            <Link to="/" className="NavBar-link">
+        {
+          <div className="NavBar-linkContainer">
+            <Link to="/" className="NavBar-link u-Block">
               Home
             </Link>
-            <Link to="/profile/" className="NavBar-link">
+            <Link to="/profile/" className="NavBar-link u-Block">
               Profile
             </Link>
             <button
@@ -31,17 +31,22 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
               Logout
             </button>
           </div>
-        ) : (
-          <div className="NavBar-linkContainer u-inlineBlock">
-            <Link to="/" className="NavBar-link">
-              Home
-            </Link>
-            <div className="NavBar-link u-inlineBlock">
-              <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
-            </div>
-          </div>
-        )}
+        }
       </GoogleOAuthProvider>
+    </nav>
+  ) : (
+    <nav className="NavBar-container NavBar-loggedOut">
+      {/* <span className="NavBar-title u-inlineBlock">
+        F<br></br>L<br></br>A<br></br>I<br></br>R
+      </span>
+      <span className="NavBar-title u-inlineBlock">
+        F<br></br>L<br></br>A<br></br>I<br></br>R
+      </span>
+      <span className="NavBar-title">
+        F<br></br>L<br></br>A<br></br>I<br></br>R
+      </span> */}
+
+      <div className="NavBar-title">FLAIR</div>
     </nav>
   );
 };

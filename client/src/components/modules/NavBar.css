@@ -1,9 +1,27 @@
+@import url("../../utilities.css");
+
 .NavBar-container {
   padding: var(--s) var(--m);
-  background-color: var(--primary);
+  height: 100%;
+  width: 20vw;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+.NavBar-loggedOut {
+  background-color: var(--platinum);
+}
+
+.NavBar-loggedIn {
+  background-color: var(--dark--purple);
 }
 
 .NavBar-title {
+  padding: var(--m);
   color: var(--white);
   font-size: 20px;
 }
@@ -17,12 +35,9 @@
   color: var(--white);
   opacity: 0.6;
   text-decoration: none;
+  padding: var(--s);
 }
 
 .NavBar-link:hover {
   opacity: 0.8;
-}
-
-.NavBar-link + .NavBar-link {
-  margin-left: var(--m);
 }
