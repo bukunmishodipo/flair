@@ -1,11 +1,19 @@
 import React from "react";
-import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
+import ProfilePicture from "../modules/ProfilePicture";
+import "./Profile.css";
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID
-const GOOGLE_CLIENT_ID = "846759232774-gvf4r9b6gq5mqpqc2jra692nak4fuurj.apps.googleusercontent.com";
+const Profile = (props) => {
+  return (
+    <>
+      <ProfilePicture className="Profile-editButton" userId={props.userId} />
+      <div className="Profile-avatarContainer">
+        <div className="Profile-avatar">pic</div>
+        <div className="Profile-bioContainer">bio</div>
+      </div>
 
-const Profile = () => {
-  return <div>profile page</div>;
+      <div className="Profile-promptContainer">prompt</div>
+    </>
+  );
 };
 
 export default Profile;
