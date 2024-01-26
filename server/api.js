@@ -23,7 +23,7 @@ const socketManager = require("./server-socket");
 
 const multer = require("multer");
 // const upload = multer({ dest: "uploads/" });
-const storage = multer.memoryStorage();
+// const storage = multer.memoryStorage();
 const upload = multer();
 
 router.post("/login", auth.login);
@@ -65,6 +65,7 @@ function uploadFiles(req, res) {
     { $set: { profilePicture: Buffer.from(newProfilePicture) } }
   )
     .then(() => {
+      console.log(Buffer.from(newProfilePicture));
       res.json({ message: "Successfully uploaded and updated profile picture" });
     })
     .catch((error) => {
@@ -88,8 +89,8 @@ router.get("/profilePicture", (req, res) => {
 
       // console.log(user.profilePicture);
       // Send the profile picture as the response
-      res.set("Content-Type", "image/jpeg"); // Adjust the content type based on your file type
-      res.send(user.profilePicture);
+      // Adjust the content type based on your file type
+      res.send({ profilePic: user.profilePicture });
     });
 });
 

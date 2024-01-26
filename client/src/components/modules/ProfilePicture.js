@@ -15,8 +15,8 @@ const ProfilePicture = (props) => {
     if (props.userId) {
       console.log("getting profile piucture");
       get("/api/profilePicture").then((URL) => {
-        setURL(URL);
-        console.log("URL", typeof URL);
+        setURL(URL.profilePic);
+        console.log("URL", URL);
       });
     }
   }, [props.userId]);
@@ -54,7 +54,7 @@ const ProfilePicture = (props) => {
       <FileBase64 type="file" multiple={false} onDone={({ base64 }) => handleUpload(base64)} />
       <button onClick={handleUpload}>Upload Profile Picture</button>
       {url ? (
-        <img id="profilePicture" src={`data:image/jpeg;base64,${url}`} alt="Profile Picture" />
+        <img id="profilePicture" src={`${atob(url)}`} alt="Profile Picture" />
       ) : (
         "No profile picture available"
       )}
