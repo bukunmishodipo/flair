@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FileBase64 from "react-file-base64";
-import { post, get } from "../../utilities";
+import { post, get, convertToJSON } from "../../utilities";
 
 const ProfilePicture = (props) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -36,9 +36,16 @@ const ProfilePicture = (props) => {
         method: "POST",
         body: formData,
       })
+        .then(convertToJSON)
         .then((response) => {
-          console.log("response:", response);
-          response.json();
+          get("/api/profilePicture").then((URL) => {
+            setURL(URL.profilePic);
+            console.log("URL", URL);
+          });
+          // console.log("response:", response);
+          // console.log(response.message);
+          // // response.json();
+          // setURL(response.profilePic);
         })
         .then((data) => {
           console.log(data);
@@ -51,13 +58,29 @@ const ProfilePicture = (props) => {
 
   return (
     <div>
-      <FileBase64 type="file" multiple={false} onDone={({ base64 }) => handleUpload(base64)} />
-      <button onClick={handleUpload}>Upload Profile Picture</button>
-      {url ? (
-        <img id="profilePicture" src={`${atob(url)}`} alt="Profile Picture" />
-      ) : (
-        "No profile picture available"
-      )}
+      <div className="u-block">
+        {url ? (
+          <img
+            id="profilePicture"
+            src={`${atob(url)}`}
+            alt="Profile Picture"
+            style={{ maxWidth: "100px" }}
+          />
+        ) : (
+          "No profile picture available"
+        )}
+      </div>
+
+      <FileBase64
+        className="u-block"
+        type="file"
+        multiple={false}
+        accept=".png, .jpeg"
+        onDone={({ base64 }) => setSelectedFile(base64)}
+      />
+      <button className="u-block" onClick={handleUpload}>
+        Upload Profile Picture
+      </button>
     </div>
   );
 };

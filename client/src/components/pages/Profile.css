@@ -1,9 +1,8 @@
-.Profile-avatar {
+.Profile-avatarContainer {
   /* make it responsive */
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  display: block;
+  max-width: 30%;
+  /* height: auto; */
+  /* display: block; */
   /* div height to be the same as width*/
   /* padding-top: 100%; */
 
@@ -26,7 +25,11 @@
   bottom: 0;
 }
 
-.Profile-avatarContainer {
-  padding: 10%;
+.Profile-bioContainer {
+  min-width: 60%;
+}
+
+.Profile-header {
+  padding: 4%;
   display: flex;
 }

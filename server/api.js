@@ -60,13 +60,16 @@ function uploadFiles(req, res) {
   //console.log(req.file);
   console.log(req.user._id);
   let newProfilePicture = req.file.buffer;
-  User.updateOne(
-    { _id: req.user._id },
-    { $set: { profilePicture: Buffer.from(newProfilePicture) } }
-  )
-    .then(() => {
-      console.log(Buffer.from(newProfilePicture));
-      res.json({ message: "Successfully uploaded and updated profile picture" });
+  User.findOne({ _id: req.user._id })
+    .then((user) => {
+      user.profilePicture = newProfilePicture;
+      user.save();
+      // console.log(Buffer.from(newProfilePicture));
+      // console.log("upload recieved");
+      res.send({
+        profilePic: newProfilePicture,
+        message: "Successfully uploaded and updated profile picture",
+      });
     })
     .catch((error) => {
       console.error("Error updating profile picture:", error);

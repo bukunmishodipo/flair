@@ -16,10 +16,10 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         {
           <div className="NavBar-linkContainer">
-            <Link to="/" className="NavBar-link u-Block">
+            <Link to="/" className="NavBar-link u-block">
               Home
             </Link>
-            <Link to="/profile/" className="NavBar-link u-Block">
+            <Link to="/profile/" className="NavBar-link u-block">
               Profile
             </Link>
             <button
